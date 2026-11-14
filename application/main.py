@@ -17,14 +17,13 @@ def connection():
             "Please refer to the README file for instructions."
         )
 
-
 def getAllStudents():
     #Executes the query
     with connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
                 "SELECT student_id, first_name, last_name, email, enrollment_date "
-                "From students ORDER BY student_id"
+                "FROM students ORDER BY student_id"
             )
             rows = cur.fetchall()
 
@@ -34,7 +33,6 @@ def getAllStudents():
     for sid, first, last, email, enrolled in rows:
         date = enrolled.strftime("%Y-%m-%d") if enrolled else "-"
         print(f"{sid:<4} {first:<12} {last:<12} {email:<28} {date}")
-
 
 def addStudent(first_name, last_name, email, enrollment_date):
     #I prepare a query and add flags into it to allow the insertion of information.
@@ -54,7 +52,7 @@ def addStudent(first_name, last_name, email, enrollment_date):
         print(f"Error: A student with the email {email!r} already exists.")
         return
     except psycopg.errors.InvalidTextRepresentation:
-    #Invalid text representation is used for invalid dates.
+        #Invalid text representation is used for invalid dates.
         print("Error: enrollment date must look like YYYY-MM-DD.")
         return
 
@@ -102,7 +100,6 @@ def _intChecking(prompt):
         print(f"{raw!r} is not a whole number.")
         return None
 
-
 def main():
     # The main function is mostly just a simple menu screen.
     while True:
@@ -122,7 +119,7 @@ def main():
             first = input("First name: ").strip()
             last = input("Last name: ").strip()
             email = input("Email: ").strip()
-            date = input("Enrollment date (YYY-MM-DD, blank for none): ").strip()
+            date = input("Enrollment date (YYYY-MM-DD, blank for none): ").strip()
             addStudent(first, last, email, date or None)
 
         elif choice == "3":

@@ -15,7 +15,7 @@ The application expects a database named 'a3_database' and connects as your oper
 
 For the program to work, please create a role matching your OS user in postgreSQL if one is not made already. The following are bash commands will set up postgreSQL for the program to run.
 
-    sudo -u postgres creatuser --creatdb "$USER" 
+    sudo -u postgres createuser --createdb "$USER" 
     
     createdb a3_database
     psql -d a3_database -f database/schema.sql
@@ -31,4 +31,6 @@ The commands assume you are in the folder COMP3005-Assignment3-josejrodriguez
 ## Running the program
 
     .venv/bin/python application/main.py
-    
+
+## Demonstration Video
+https://youtu.be/gQ6feZvOKwo
